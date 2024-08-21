@@ -1,5 +1,6 @@
 import pygame, sys
 from settings import Settings
+from orb import Orb
 
 
 class DPDG:
@@ -11,15 +12,18 @@ class DPDG:
         self.screen = pygame.display.set_mode((self.settings.screen_width, self.settings.screen_height), pygame.FULLSCREEN)
         pygame.display.set_caption("DPDG")
         self.bg_color = self.settings.bg_color
+        self.orb = Orb(self.screen, self.settings)
 
     def run(self):
         """Main loop"""
         while True:
-            self.check_events()
-            self.update_screen()
+           self.check_events()
+           self.update_screen()
+           pygame.display.update()
 
     def update_screen(self):
         self.screen.fill(self.bg_color)
+        self.orb.draw()
 
     def check_events(self):
         for event in pygame.event.get():
