@@ -15,12 +15,14 @@ class DPDG:
         pygame.display.set_caption("DPDG")
         self.bg_color = self.settings.bg_color
         self.orb = Orb(self.screen, self.settings)
+        self.Clock = pygame.time.Clock()
 
     def run(self):
         """Main loop"""
         while True:
             self.check_events()
-            self.orb.update()
+            delta_time = self.Clock.tick()
+            self.orb.update(delta_time)
             self.update_screen()
             pygame.display.update()
 
