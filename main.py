@@ -1,6 +1,7 @@
 import pygame, sys, time
 from settings import Settings
 from orb import Orb
+from timer import Timer
 
 EVENT_SESSION_END = 1
 
@@ -18,6 +19,7 @@ class DPDG:
         self.orb = Orb(self.screen, self.settings)
         self.Clock = pygame.time.Clock()
         self.session_duration = self.settings.session_duration
+        self.timer = Timer(self.screen)
 
         event_session_end = pygame.event.Event(pygame.USEREVENT, EventType=EVENT_SESSION_END)
         pygame.time.set_timer(event_session_end, self.settings.session_duration)
@@ -44,6 +46,7 @@ class DPDG:
     def update_screen(self):
         self.screen.fill(self.bg_color)
         self.orb.draw()
+        self.timer.draw()
 
     def move_orb(self):
         self.orb.move()
