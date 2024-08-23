@@ -55,9 +55,9 @@ class DPDG:
         if event.key == pygame.K_ESCAPE:
             sys.exit()
         elif event.key == pygame.K_UP:
-            self.orb.change_speed(1)
+            self.orb.change_speed(coefficient=1)
         elif event.key == pygame.K_DOWN:
-            self.orb.change_speed(-1)
+            self.orb.change_speed(coefficient=-1)
         elif event.key == pygame.K_q:
             sys.exit()
 

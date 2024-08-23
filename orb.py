@@ -42,6 +42,6 @@ class Orb:
         self.move(delta_time)
         self.draw()
 
-    def change_speed(self, coefficient):
+    def change_speed(self, coefficient=1):
         self.orb_speed += (coefficient * self.settings.orb_speed_step)
 
