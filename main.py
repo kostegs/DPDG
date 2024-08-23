@@ -1,7 +1,8 @@
-import pygame, sys
+import pygame, sys, time
 from settings import Settings
 from orb import Orb
 
+EVENT_SESSION_END = 1
 
 class DPDG:
     """Main class"""
@@ -16,6 +17,10 @@ class DPDG:
         self.bg_color = self.settings.bg_color
         self.orb = Orb(self.screen, self.settings)
         self.Clock = pygame.time.Clock()
+        self.session_duration = self.settings.session_duration
+
+        event_session_end = pygame.event.Event(pygame.USEREVENT, EventType=EVENT_SESSION_END)
+        pygame.time.set_timer(event_session_end, self.settings.session_duration)
 
     def run(self):
         """Main loop"""
@@ -32,6 +37,9 @@ class DPDG:
                 sys.exit()
             elif event.type == pygame.KEYDOWN:
                 self.check_keydown_events(event)
+            elif event.type == pygame.USEREVENT:
+                if event.EventType == EVENT_SESSION_END:
+                    sys.exit()
 
     def update_screen(self):
         self.screen.fill(self.bg_color)
